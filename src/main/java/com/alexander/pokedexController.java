@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller class where GET requests are mapped.
+ */
 @RestController
 public class pokedexController {
 
