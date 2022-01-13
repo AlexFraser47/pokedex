@@ -16,19 +16,28 @@ import java.util.List;
 public class Pokemon {
 
     private String name;
-    private Object formDescriptions;
-    private Object habitat;
+    private String description;
+    private String habitat;
     private boolean isLegendary;
 
-    @JsonProperty("form_descriptions")
-    private void unpackNested(List<JSONObject> form_descriptions) {
+    @JsonProperty("flavor_text_entries")
+    private void unpackNestedDescription(List<JSONObject> description) {
         try {
-            this.formDescriptions = form_descriptions.get(0).get("description");
+            this.description = description.get(0).get("flavor_text").toString();
         } catch (IndexOutOfBoundsException ie) {
             log.debug("empty description, ", ie);
-            this.formDescriptions = null;
+            this.description = null;
         }
+    }
 
+    @JsonProperty("habitat")
+    private void unpackNestedHabitat(JSONObject habitat) {
+        try {
+            this.habitat = habitat.get("name").toString();
+        } catch (NullPointerException e) {
+            log.debug("empty habitat, ", e);
+            this.habitat = null;
+        }
     }
 
 }
