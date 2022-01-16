@@ -45,4 +45,9 @@ public class Pokemon {
         this.isLegendary = isLegendary;
     }
 
+    @JsonProperty(value="isLegendary")
+    public boolean isLegendary() {
+        return isLegendary;
+    }
+
 }
