@@ -25,12 +25,6 @@ public class ApiCallsTest {
         pokemon.setDescription("this is a fire pokemon");
     }
 
-//    @Test
-//    public void convertJsonIntoPokemonObject() {
-//        when(restMock.getForObject(anyString(), eq(Pokemon.class))).thenReturn(pokemon);
-//        Pokemon result = underTest.getPokemonInfo("charmander");
-//    }
-
     @Test
     public void getValidPokemonSpeciesApiCallTest() {
 
