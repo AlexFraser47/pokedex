@@ -21,7 +21,14 @@ public class PokedexController {
     public Pokemon search(@PathVariable String pokemon) {
         log.info("searching for pokemon: " + pokemon);
 
-        return apiCalls.getPokemonInfo(pokemon);
+        return apiCalls.getPokemonInfo(pokemon.toLowerCase());
+    }
+
+    @GetMapping("/pokemon/translated/{pokemonName}")
+    public Pokemon searchModifiedPokemon(@PathVariable String pokemonName) {
+        log.info("searching for pokemon: " + pokemonName);
+
+        return apiCalls.getModifiedPokemonInfo(pokemonName.toLowerCase());
     }
 
 }

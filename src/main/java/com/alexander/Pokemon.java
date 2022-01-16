@@ -40,4 +40,9 @@ public class Pokemon {
         }
     }
 
+    @JsonProperty("is_legendary")
+    private void setLegendaryStatus(boolean isLegendary) {
+        this.isLegendary = isLegendary;
+    }
+
 }
