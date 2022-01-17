@@ -49,11 +49,9 @@ public class ApiCalls {
 
             if ("cave".equalsIgnoreCase(modifiedPokemon.getHabitat()) || modifiedPokemon.isLegendary()) {
                 log.info("using api url: {} ", YODA_URL);
-                log.info(modifiedPokemon.getDescription());
 
                 String translatedDescription = getTranslatedDescription(modifiedPokemon, YODA_URL);
                 modifiedPokemon.setDescription(translatedDescription);
-                log.info(translatedDescription);
             }
             else {
                 log.info("using api url: {} ", SHAKESPEARE_URL);
