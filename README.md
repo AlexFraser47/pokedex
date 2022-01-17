@@ -3,12 +3,13 @@ Pokedex for TrueLayer..
 
 * Prerequisites
   * Java 11 (https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
-  * Maven
+  * Maven (it should come with Intellij, if not follow this https://maven.apache.org/guides/getting-started/)
   * IDE (Ideally Intellij) (https://www.jetbrains.com/idea/download/#section=mac)
   * Docker (https://docs.docker.com/get-docker/)
 
     
 * Install packages
+  * Open the root folder in intellij, pokedex. 
   * Terminal: cd into the root dir. Run 'mvn clean install'.
   * Intellij: Find the maven window (top right). Click into 'lifecycle' and highlight both 'clean' & 'install'. Click the green run arrow.
 
