@@ -11,9 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Class to call APIs
@@ -52,9 +49,11 @@ public class ApiCalls {
 
             if ("cave".equalsIgnoreCase(modifiedPokemon.getHabitat()) || modifiedPokemon.isLegendary()) {
                 log.info("using api url: {} ", YODA_URL);
+                log.info(modifiedPokemon.getDescription());
 
                 String translatedDescription = getTranslatedDescription(modifiedPokemon, YODA_URL);
                 modifiedPokemon.setDescription(translatedDescription);
+                log.info(translatedDescription);
             }
             else {
                 log.info("using api url: {} ", SHAKESPEARE_URL);
@@ -72,7 +71,7 @@ public class ApiCalls {
 
     private String getTranslatedDescription(Pokemon modifiedPokemon, String url) throws ParseException {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("text", URLEncoder.encode(modifiedPokemon.getDescription(), StandardCharsets.UTF_8));
+        jsonObject.put("text", modifiedPokemon.getDescription());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -84,6 +83,6 @@ public class ApiCalls {
         JSONObject json = (JSONObject) parser.parse(translationResponse);
         JSONObject jsonObject1 = (JSONObject) json.get("contents");
 
-        return URLDecoder.decode(jsonObject1.get("translated").toString(), StandardCharsets.UTF_8);
+        return jsonObject1.get("translated").toString();
     }
 }

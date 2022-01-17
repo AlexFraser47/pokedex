@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -21,12 +22,17 @@ public class Pokemon {
     private boolean isLegendary;
 
     @JsonProperty("flavor_text_entries")
-    private void unpackNestedDescription(List<JSONObject> description) {
-        try {
-            this.description = description.get(0).get("flavor_text").toString();
-        } catch (IndexOutOfBoundsException ie) {
-            log.debug("empty description, ", ie);
-            this.description = null;
+    private void unpackNestedDescription(List<JSONObject> descriptions) {
+        this.description = null;
+
+        for (JSONObject description : descriptions) {
+            Map<String, String> getDescriptions = (Map<String, String>) description.get("language");
+            String language = getDescriptions.get("name");
+            if ("en".equalsIgnoreCase(language)) {
+                this.description = description.get("flavor_text").toString().replace("\n", " ")
+                        .replace("\f", " ").replace("é", "e");
+                break;
+            }
         }
     }
 
@@ -45,7 +51,7 @@ public class Pokemon {
         this.isLegendary = isLegendary;
     }
 
-    @JsonProperty(value="isLegendary")
+    @JsonProperty(value = "isLegendary")
     public boolean isLegendary() {
         return isLegendary;
     }
