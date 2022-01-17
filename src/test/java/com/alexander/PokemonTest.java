@@ -18,7 +18,7 @@ public class PokemonTest {
         Pokemon mappedPokemon = new ObjectMapper().readValue(json, Pokemon.class);
 
         Assert.assertEquals("charmander", mappedPokemon.getName());
-        Assert.assertEquals("Obviously prefers\nhot places. When\nit rains, steam\fis said to spout\nfrom the tip of\nits tail.", mappedPokemon.getDescription());
+        Assert.assertEquals("Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.", mappedPokemon.getDescription());
         Assert.assertEquals("mountain", mappedPokemon.getHabitat());
         Assert.assertFalse(mappedPokemon.isLegendary());
     }
